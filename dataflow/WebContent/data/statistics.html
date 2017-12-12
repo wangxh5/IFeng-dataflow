@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+<meta charset="utf-8">
+<title>数据统计折线图</title>
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	media="screen">
+<link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet"
+	media="screen">
+<script src="../js/echarts.js"></script>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/echartsOption4.js"></script>
+
+</head>
+<body style="height: 100%; margin: 0">
+
+	<div class="container">
+		<form action="" class="form-horizontal" role="form">
+			<fieldset>
+				<legend>数据统计</legend>
+
+				<div class="form-group">
+					<label class="col-md-2 control-label">开始日期</label>
+					<div class="input-group date form_date_start col-md-5" data-date=""
+						data-date-format="yyyy-mm-dd" data-link-field="dtp_input2"
+						data-link-format="yyyy-mm-dd" style="width: 350px; height: 30px;">
+						<input id="startDate" class="form-control" size="5" type="text"
+							value="" readonly> <span class="input-group-addon"><span
+							class="glyphicon glyphicon-remove"></span></span> <span
+							class="input-group-addon"><span
+							class="glyphicon glyphicon-calendar"></span></span>
+					</div>
+					<input type="hidden" id="dtp_input2" value="" /><br />
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label">结束日期</label>
+					<div class="input-group date form_date_end col-md-5" data-date=""
+						data-date-format="yyyy-mm-dd" data-link-field="dtp_input1"
+						data-link-format="yyyy-mm-dd" style="width: 350px; height: 30px;">
+						<input id="endDate" class="form-control" size="5" type="text"
+							value="" readonly> <span class="input-group-addon"><span
+							class="glyphicon glyphicon-remove"></span></span> <span
+							class="input-group-addon"><span
+							class="glyphicon glyphicon-calendar"></span></span>
+							
+					</div>
+					<input type="hidden" id="dtp_input1" value="" /><br />
+				</div>
+				<div class="form-group">
+					<label class="col-md-2 control-label"></label>
+					<div class="input-group date button col-md-5">
+						<button class="btn submit-btn btn-primary" data-loading-text="稍等"
+							type="button" onClick="dataSearch()" style="width: 100px; height: 30px;">查询</button>
+						<!-- <input class="col-md-2 control-label" id="sreach-btn" class="form-control" type="button" value="查询"
+							onClick="dataSearch()" style="width: 70px; height: 30px;"></input> -->
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div id="container" style="height: 70%; width: 90%; position: bottom"></div>
+	<script type="text/javascript">
+		var dom = document.getElementById("container");
+		var myChart = echarts.init(dom);
+	</script>
+
+	<script type="text/javascript" src="../jquery/jquery-1.8.3.min.js"
+		charset="UTF-8"></script>
+	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap-datetimepicker.js"
+		charset="UTF-8"></script>
+	<script type="text/javascript"
+		src="../js/locales/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+	<script type="text/javascript">
+		function getYesterDay(AddDayCount) {
+			var dd = new Date();
+			dd.setDate(dd.getDate() + AddDayCount);//获取AddDayCount天后的日期
+			return dd;
+		}
+
+		$('.form_date_start').datetimepicker({
+			/* language : 'fr', */
+			format : 'yyyy-mm-dd',
+			weekStart : 1,
+			todayBtn : true,
+			autoclose : 1,
+			todayHighlight : 1,
+			startView : 2,
+			minView : 2,
+			forceParse : 0,
+			startDate : '2017-11-16',
+			endDate : getYesterDay(-1)
+		});
+		$('.form_date_end').datetimepicker({
+			/* language : 'fr', */
+			format : 'yyyy-mm-dd',
+			weekStart : 1,
+			todayBtn : true,
+			autoclose : 1,
+			todayHighlight : 1,
+			startView : 2,
+			minView : 2,
+			forceParse : 0,
+			startDate : '2017-11-16',
+			endDate : getYesterDay(-1)
+		});
+	</script>
+
+</body>
+</html>
